@@ -1,0 +1,33 @@
+<%- include('includes/header') %>
+  
+  <div class="container py-md-5 container--narrow">
+    
+    <%- include('includes/flash') %>
+
+    <div class="d-flex justify-content-between">
+      <h2><%= viewPost.title %></h2>
+      <% console.log(viewPost.checkAuth) 
+         console.log(viewPost.checkVisit)
+      %>
+      <% if(viewPost.isVisitorOwner) { %>
+        <span class="pt-2">
+          <a href="/post/<%= viewPost._id %>/edit" class="text-primary mr-2" data-toggle="tooltip" data-placement="top" title="Edit"><i class="fas fa-edit"></i></a>
+          <form class="delete-post-form d-inline" action="#" method="POST">
+            <button class="delete-post-button text-danger" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fas fa-trash"></i></button>
+          </form>
+        </span>
+      <% } %>
+    </div>
+      
+    <p class="text-muted small mb-4">
+      <a href="#"><img class="avatar-tiny" src="<%= viewPost.author.avatar %>"></a>
+      Posted by <a href="#"><%= viewPost.author.username %></a> on <%= viewPost.createdDate.getMonth() + 1 %>/<%= viewPost.createdDate.getDate() %>/<%= viewPost.createdDate.getFullYear()%> </p>
+
+    <div class="body-content">
+      <%= viewPost.content %>
+    </div>
+
+  </div>
+  
+  <!-- footer begins -->
+  <%- include('includes/footer') %>
